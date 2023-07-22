@@ -22,7 +22,6 @@ const deleteTask = (taskIndex) => {
   saveTasksToLocalStorage();
 };
 
-// Function to edit a task description
 const editTask = (taskIndex, newDescription) => {
   tasks[taskIndex].description = newDescription;
   saveTasksToLocalStorage();
@@ -44,7 +43,6 @@ const filterList = (x) => {
   return false;
 };
 
-// Function to update the UI with the current tasks
 const updateUI = () => {
   const list = document.getElementById('list');
   list.innerHTML = '';
@@ -101,6 +99,15 @@ const editList = (taskIndex) => {
     updateUI();
   }
 };
+const clearCompletedTasks = () => {
+  for (let i = tasks.length - 1; i >= 0; i -= 1) {
+    if (tasks[i].completed) {
+      deleteTask(i);
+    }
+  }
+  saveTasksToLocalStorage(); // Save the updated tasks array after removing completed tasks
+  updateUI();
+};
 
 document.getElementById('addBtn').addEventListener('click', addList);
 document.getElementById('list').addEventListener('click', (event) => {
@@ -114,8 +121,11 @@ document.getElementById('list').addEventListener('click', (event) => {
   } else if (target.matches('[type="checkbox"]')) {
     const taskIndex = parseInt(target.id.replace('check', ''), 10) - 1;
     markCompleted(taskIndex);
+    saveTasksToLocalStorage();
     updateUI();
   }
 });
+
+document.getElementById('clearCompletedButton').addEventListener('click', clearCompletedTasks);
 
 updateUI();
