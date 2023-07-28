@@ -16,4 +16,11 @@ const addTask = (taskValue) => {
   `;
   toDoList.appendChild(taskContainer);
 };
-
+describe('to check if the add function works', () => {
+  test('addtask', () => {
+    addTask('Go for a walk');
+    addTask('cook dinner');
+    const listItem = document.querySelectorAll('#to-dos .list-item');
+    expect(listItem.length).toBe(3);
+  });
+});
