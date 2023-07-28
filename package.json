@@ -26,7 +26,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom"
+  },
   "dependencies": {
-    "jest": "^29.6.2"
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2"
   }
 }
