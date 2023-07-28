@@ -129,3 +129,12 @@ document.getElementById('list').addEventListener('click', (event) => {
 document.getElementById('clearCompletedButton').addEventListener('click', clearCompletedTasks);
 
 updateUI();
+// Export the functions to make them available for testing
+module.exports = {
+  addTask,
+  deleteTask,
+  editTask,
+  markCompleted,
+  filterList,
+  updateUI,
+}
